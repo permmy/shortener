@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="theme-color" content="#009688"/>
+    <title>Url Shortening Service</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" th:href="@{https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css}">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col s12 m12 l12 center-align">
+            <h6 class="flow-text">URL SHORTENER</h6>
+        </div>
+        <div class="col s12 m6 l6 offset-m3 offset-l3" style="margin-top: 2px">
+            <form th:action="@{/shrink}" method="post">
+                <div class="row">
+                    <div class="input-field">
+                        <input type="text" id="url" name="url" placeholder="https://www.google.com" required="required"/>
+                        <label for="url">Enter address</label>
+                        <small th:if="${error!=null}" class="red-text">[[${error}]]</small>
+                    </div>
+                </div>
+                <div class="row center-align">
+                    <button type="submit" class="btn green">Shorten</button>
+                </div>
+            </form>
+        </div>
+        <div th:if="${shortened!=null}" th:remove="tag">
+            <div class="col s12 m6 l6 offset-m3 offset-l3 center-align">
+                <p class="green-text">shortened url</p>
+                <h6 class="flow-text">[[${shortened}]]</h6>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Compiled and minified JavaScript -->
+<script th:src="@{https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js}"></script>
+</body>
+</html>
